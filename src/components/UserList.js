@@ -29,6 +29,15 @@ const UserList = ({ users }) => {
     document.querySelector("#name").value = "";
     document.querySelector("#lastname").value = "";
   };
+  
+  
+  const handleRemoveLastUser = (event) => {
+    usersList.splice(usersList.length - 1, 1);
+    setUsersList((prevUsersList) => {
+      // Spread operator
+      return [...prevUsersList];
+    });
+  };
 
   return (
     <>
@@ -36,7 +45,7 @@ const UserList = ({ users }) => {
       <input type="text" id="name" placeholder="Ingrese un nombre" />
       <input type="text" id="lastname" placeholder="Ingrese un apellido" />
       <button onClick={handleAddUser}>Añadir</button>
-      <button>Eliminar el último usuario</button>
+      <button onClick={handleRemoveLastUser}>Eliminar el último usuario</button>
       <ul>
         {usersList.map((user, index) => {
           return <li key={Math.random()}>{formatName(user)}</li>;
